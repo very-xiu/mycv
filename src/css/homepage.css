@@ -1,0 +1,178 @@
+.wrapper {
+    max-width: 800px;
+    margin: auto;
+}
+
+.icon {
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px #fff, 0 0 0 4px #999, 0 2px 5px 4px rgba(0, 0, 0, .2);
+}
+
+/*************************
+         HEADER
+**************************/
+header {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgb(209, 209, 209);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header .avatar {
+    margin-bottom: 20px;
+
+    background: url('../images/1.png') center;
+    background-size: cover;
+}
+
+header .name-and-title {
+    display: flex;
+    flex-direction: column;
+}
+
+/*TODO:font*/
+header .name-and-title .name {
+    text-align: center;
+
+    font-family: Comic Sans MS;
+    font-size: 40px;
+}
+
+header .name-and-title .title {
+    text-align: center;
+
+    font-style: italic;
+    font-size: 16px;
+}
+
+/*************************
+         MAIN
+**************************/
+main .columns {
+    margin-top: 20px;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+main .column {
+    border: solid 1px #ccc;
+    padding: 20px 0px;
+
+    width: 230px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main .column .link {
+    margin-top: 20px;
+    font-size: 25px;
+
+    color: #428bca;
+}
+
+main .column .link:link {
+    text-decoration: none;
+}
+
+main .column .link:hover {
+    text-decoration: underline;
+}
+
+main .column .link:visited {
+    text-decoration: none;
+}
+
+main .column .github {
+    background: url('../images/github.png') center;
+    background-size: cover;
+}
+
+main .column .cv {
+    background: url('../images/jianli.png') 1.8rem center;
+    background-size: 63%;
+    background-repeat: no-repeat;
+}
+
+main .column .gold {
+    background: url('../images/mayun.png') center;
+    background-size: 65%;
+    background-repeat: no-repeat;
+}
+
+main .column .qr_code {
+    margin-top: 20px;
+    width: 150px;
+    height: 150px;
+}
+
+main .column .qr_github {
+    background: url('../images/qr_github.png') center;
+    background-size: cover;
+}
+
+main .column .qr_cv {
+    background: url('../images/qr_cv.png') center;
+    background-size: cover;
+}
+
+main .column .qr_mayun {
+    background: url('../images/qr_mayun.png') center;
+    background-size: cover;
+}
+
+/*************************
+         FOOTER
+**************************/
+footer {
+    margin-top: 20px;
+    border: solid 1px #ccc;
+}
+.content{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 10px;
+    margin-top: 20px;
+}
+.content_left{
+    width: 342px;
+    height: 640px;
+    position: relative;
+    background: url('../images/iphone-bg.png') no-repeat;
+}
+.left_text{
+    position: absolute;
+    left: 108px;
+    top: -42px;
+    color: #428bca;
+    font-weight: bold;
+}
+
+.content_right{
+    width: 342px;
+    height: 640px;
+    position: relative;
+    background: url('../images/iphone-bg.png') no-repeat;
+}
+.right_text{
+    position: absolute;
+    left: 108px;
+    top: -42px;
+    color: #428bca;
+    font-weight: bold;
+}
+
+.vue-index{
+    position: absolute;
+    left: 12px;
+    top: 34px;
+    border: none;
+}

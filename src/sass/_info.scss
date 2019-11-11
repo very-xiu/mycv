@@ -2,18 +2,19 @@
     .avatar {
         width: 8rem;
         height: 8rem;
-        // border-radius: 50%;
-        // box-shadow: 0 0 0 0.25rem $white_smoke, 0 0 0 0.25rem #999, 0 0.125rem 0.25rem 0.25rem rgba(0, 0, 0, .2);
-        margin: 1.5rem auto;
+        border-radius: 50%;
+        box-shadow: 0 0 0 0.25rem #fff, 0 0 0 0.25rem #999, 0 0.125rem 0.25rem 0.25rem rgba(0, 0, 0, .2);
+        margin: 3.5rem auto;
+        margin-top: 0;
         background: url('../images/1.png') center;
         background-size: cover;
-        border-radius: 100%;
     }
 
     .name {
         font-size: 2.5rem;
         font-weight: bold;
         color: $yankees_blue;
+        margin-bottom: 0.5rem;
     }
 
     .title {
@@ -51,18 +52,19 @@
 
             &:hover {
                 cursor: pointer;
+                color: #2ed573;
 
                 .wechat {
                     position: absolute;
-                    top: -5.1rem;
+                    top: -5.5rem;
                     right: -1.75rem;
-
                     display: inline-block;
-                    width: 4.5rem;
-                    height: 4.5rem;
-                    background: url("../images/wechat.png") no-repeat;
+                    width: 5rem;
+                    height: 5rem;
+                    background: url("../images/weixin.png") no-repeat;
                     background-size: cover;
-                    border: 0.1rem solid #000;
+                    border: 0.1rem solid rgb(68, 132, 216);
+                    border-radius: 5%;
 
                     &::after,
                     &::before {
@@ -73,10 +75,10 @@
                     }
 
                     &:before {
-                        bottom: -1rem;
+                        bottom: -1.01rem;
                         right: 1.75rem;
                         border: 0.5rem transparent solid;
-                        border-top-color: #000;
+                        border-top-color:rgb(68, 132, 216);
                     }
 
                     &::after {
@@ -89,13 +91,28 @@
             }
         }
     }
+    .icon-envelop:hover{
+        color: #ffa502;
+    }
+    .icon-github:hover{
+        color: #bdbdbd;
+    }
+    .iconmayun{
+        font-size: 1rem;
+    }
+    .iconmayun:hover{
+        color: rgb(184, 0, 0);
+    }
 
     .pdf {
         display: inline-block;
-        margin-top: 4rem;
+        margin-top: 2rem;
 
-        font-size: .6rem;
+        font-size: 0.8rem;
         color: $yankees_blue;
-        text-decoration: underline;
+        // text-decoration: underline;
+    }
+    .pdf:hover{
+        color: red;
     }
 }
