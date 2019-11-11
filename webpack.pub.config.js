@@ -13,7 +13,8 @@ module.exports = {
         'bundle': path.join(__dirname, './src/main.js'),
     },
     output: {
-        path: path.join(__dirname, './ddd'),
+        path: path.join(__dirname, './docs/ddd'),
+        // path: path.join(__dirname, './docs/dist'),
         filename: 'js/[name].js' // 将来再发布的时候，除了会有一个 bundle.js ，还会多一个 vendor~bundle.js 的文件，里面存放了所有的第三方包
     },
     mode: 'production', // 设置mode
@@ -27,11 +28,13 @@ module.exports = {
                 removeAttributeQuotes: true
             }
         }),
-        new CleanWebpackPlugin({ path: './ddd' }), //要删除的文件
+        new CleanWebpackPlugin({ path: './docs/ddd' }), //要删除的文件
+        // new CleanWebpackPlugin({ path: './docs/dist' }), 
         // new webpack.optimize.UglifyJsPlugin({
         //     compress:{warnings:false}
         // }),
-        new ExtractTextPlugin("css/styles.css") //抽取css
+        new ExtractTextPlugin("./docs/ddd/css/styles.css") //抽取css
+        // new ExtractTextPlugin({"./docs/dist/css/styles.css")
     ],
     optimization: {
         splitChunks: {
