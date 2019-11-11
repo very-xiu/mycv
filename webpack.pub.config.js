@@ -10,17 +10,16 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     entry: { //配置入口节点
-        'bundle': path.join(__dirname, './src/main.js'),
+        'bundle': path.resolve(__dirname, './src/main.js'),
     },
     output: {
-        path: path.join(__dirname, './docs/ddd'),
-        // path: path.join(__dirname, './docs/dist'),
+        path: path.resolve(__dirname, './docs'),
         filename: 'js/[name].js' // 将来再发布的时候，除了会有一个 bundle.js ，还会多一个 vendor~bundle.js 的文件，里面存放了所有的第三方包
     },
     mode: 'production', // 设置mode
     plugins: [ //插件
         new htmlWebpackPlugin({
-            template: path.join(__dirname, './src/index.html'),
+            template: path.resolve(__dirname, './src/index.html'),
             filename: 'index.html',
             minify: {
                 collapseWhitespace: true,
@@ -28,13 +27,11 @@ module.exports = {
                 removeAttributeQuotes: true
             }
         }),
-        new CleanWebpackPlugin({ path: './docs/ddd' }), //要删除的文件
-        // new CleanWebpackPlugin({ path: './docs/dist' }), 
+        // new CleanWebpackPlugin({ path: './docs' }), //要删除的文件
         // new webpack.optimize.UglifyJsPlugin({
         //     compress:{warnings:false}
         // }),
-        new ExtractTextPlugin("./docs/ddd/css/styles.css") //抽取css
-        // new ExtractTextPlugin({"./docs/dist/css/styles.css")
+        new ExtractTextPlugin("css/styles.css") //抽取css
     ],
     optimization: {
         splitChunks: {
@@ -95,7 +92,7 @@ module.exports = {
                 ]
             },  
 
-            { test: /\.(png|gif|jpg|bmp)$/, use: [
+            { test: /\.(png|gif|jpg|bmp|ico)$/, use: [
                     {
                         loader:'url-loader',
                         options: {limit: 8192,name:'images/[name].[hash:8].[ext]'}

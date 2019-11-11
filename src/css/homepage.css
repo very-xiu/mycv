@@ -149,7 +149,7 @@ footer {
 .left_text{
     position: absolute;
     left: 108px;
-    top: -52px;
+    top: -43px;
     color: #428bca;
     font-weight: bold;
 }
@@ -163,7 +163,7 @@ footer {
 .right_text{
     position: absolute;
     left: 108px;
-    top: -52px;
+    top: -43px;
     color: #428bca;
     font-weight: bold;
 }

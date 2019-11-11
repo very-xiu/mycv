@@ -1,5 +1,5 @@
 {
-  "name": "online-resume",
+  "name": "myhomepage",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "autoprefixer": "^9.7.1",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-plugin-component": "^1.1.1",
@@ -27,6 +28,7 @@
     "html-webpack-plugin": "^3.2.0",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
+    "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.13.0",
     "sass": "^1.3.0",
     "sass-loader": "^8.0.0",
