@@ -90,21 +90,22 @@ module.exports = {
                     }
                 ]
             },//会打包到dist下的fonts文件夹下，必须使用hash
-            { test: /\.(png|gif|jpg|bmp|ico)$/, use: [
+            {
+                test: /\.(png|gif|jpg|bmp|ico)$/, use: [
                     {
-                        loader:'url-loader',
-                        options: {limit: 8192,name:'images/[name][hash:8].[ext]'}
+                        loader: 'url-loader',
+                        options: { limit: 8192, name: 'images/[name].[ext]' }
                     }   //必须使用hash
-                ] 
+                ]
             },
             { test: /\.js?$/, use: 'babel-loader', exclude: /node_modules/ },
             {
                 test: /\.pdf$/,
                 use: {
-                  loader: 'file-loader',
-                  options: {
-                    name: 'pdf/[name].[ext]'
-                  }
+                    loader: 'file-loader',
+                    options: {
+                        name: 'pdf/[name].[ext]'
+                    }
                 }
             }
         ]
