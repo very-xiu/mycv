@@ -93,7 +93,7 @@ module.exports = {
             { test: /\.(png|gif|jpg|bmp|ico)$/, use: [
                     {
                         loader:'url-loader',
-                        options: {limit: 8192,name:'images/[name].[hash:8].[ext]'}
+                        options: {limit: 8192,name:'images/[name][hash:8].[ext]'}
                     }   //必须使用hash
                 ] 
             },
