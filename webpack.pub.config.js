@@ -13,7 +13,7 @@ module.exports = {
         'bundle': path.resolve(__dirname, './src/main.js'),
     },
     output: {
-        path: path.resolve(__dirname, './dist'),
+        path: path.resolve(__dirname, './docs'),
         filename: 'js/[name].js' // 将来再发布的时候，除了会有一个 bundle.js ，还会多一个 vendor~bundle.js 的文件，里面存放了所有的第三方包
     },
     mode: 'production', // 设置mode
@@ -27,11 +27,11 @@ module.exports = {
                 removeAttributeQuotes: true
             }
         }),
-        new CleanWebpackPlugin({ path: './dist' }), //要删除的文件
+        new CleanWebpackPlugin({ path: './docs' }), //要删除的文件
         // new webpack.optimize.UglifyJsPlugin({
         //     compress:{warnings:false}
         // }),
-        new ExtractTextPlugin("css/styles.css") //抽取css
+        new ExtractTextPlugin("./css/styles.css") //抽取css
     ],
     optimization: {
         splitChunks: {
@@ -86,7 +86,7 @@ module.exports = {
                 test: /\.(ttf|eot|svg|woff|woff2)$/, use: [
                     {
                         loader: 'file-loader',
-                        options: { name: 'fonts/[name].[hash:8].[ext]' }
+                        options: { name: './fonts/[name].[hash:8].[ext]' }
                     }
                 ]
             },//会打包到dist下的fonts文件夹下，必须使用hash
