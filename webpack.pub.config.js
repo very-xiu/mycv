@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
@@ -31,7 +32,11 @@ module.exports = {
         // new webpack.optimize.UglifyJsPlugin({
         //     compress:{warnings:false}
         // }),
-        new ExtractTextPlugin("./css/styles.css") //抽取css
+        new ExtractTextPlugin("./css/styles.css"), //抽取css
+        new webpack.ProvidePlugin({
+            jQuery: 'jquery',
+            $: 'jquery'
+        })
     ],
     optimization: {
         splitChunks: {
@@ -62,40 +67,42 @@ module.exports = {
     module: {
         rules: [ //所有第三方模块的匹配规则
             {
-                test: /\.scss$/, use: ExtractTextPlugin.extract({
+                test: /\.scss$/,
+                use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: ['css-loader', 'sass-loader'],
                     publicPath: '../' // 指定抽取的时候，自动为我们的路径加上 ../ 前缀
                 })
             },
             {
-                test: /\.css$/, use: ExtractTextPlugin.extract({
+                test: /\.css$/,
+                use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
                     use: "css-loader",
                     publicPath: '../'
                 })
             },
             {
-                test: /\.less$/, use: ExtractTextPlugin.extract({
+                test: /\.less$/,
+                use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
                     use: "less-loader",
                     publicPath: '../'
                 })
             },
             {
-                test: /\.(ttf|eot|svg|woff|woff2)$/, use: [
-                    {
-                        loader: 'file-loader',
-                        options: { name: './fonts/[name].[hash:8].[ext]' }
-                    }
-                ]
-            },//会打包到dist下的fonts文件夹下，必须使用hash
+                test: /\.(ttf|eot|svg|woff|woff2)$/,
+                use: [{
+                    loader: 'file-loader',
+                    options: { name: './fonts/[name].[hash:8].[ext]' }
+                }]
+            }, //会打包到dist下的fonts文件夹下，必须使用hash
             {
-                test: /\.(png|gif|jpg|bmp|ico)$/, use: [
-                    {
+                test: /\.(png|gif|jpg|bmp|ico)$/,
+                use: [{
                         loader: 'url-loader',
                         options: { limit: 8192, name: 'images/[name].[ext]' }
-                    }   //必须使用hash
+                    } //必须使用hash
                 ]
             },
             { test: /\.js?$/, use: 'babel-loader', exclude: /node_modules/ },
