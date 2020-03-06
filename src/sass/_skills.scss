@@ -6,11 +6,12 @@
   }
   span {
     display: inline-block;
-    margin: .325rem;
-    padding: .375rem;
+    // margin: .325rem;
+    // padding: .375rem;
     font-weight: bold;
     color: #fff;
     border-radius: .25rem;
     background-color: $silver;
+    // box-sizing: border-box;
   }
 }

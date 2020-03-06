@@ -17,6 +17,7 @@
 
   <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdn.bootcss.com/fullPage.js/3.0.7/fullpage.js"></script>
+  <script src="https://cdn.bootcss.com/echarts/4.6.0/echarts.min.js"></script>
   <script>
     $(function () {
       $('#fullpage').fullpage({
@@ -29,6 +30,80 @@
         // sectionsColor: ['#00648C', '#0076A5', '#0089BF', '#009BD8'],
         // anchors: ['page1', 'page2', 'page3', 'page4']
       });
+      // 基于准备好的dom，初始化echarts实例
+      var myLeftChart = echarts.init(document.getElementById('left'));
+      let option = {
+        xAxis: [
+          {
+            type: 'category',
+            data: ['HTML5/CSS3', 'JavaScript', 'JQuery', 'Vue', 'Git', 'Nodejs', 'Webpack', '微信小程序', 'ECharts','PhotoShop','After Effects','Premiere','Illustrator'],
+            axisLabel: {
+              interval: 0,
+              rotate: 45,
+              textStyle: {
+                fontSize: 10,
+                color: '#2980B9',
+                fontWeight: 'bold'
+              }
+            },
+            axisTick: {
+              alignWithLabel: true
+            }
+          }
+        ],
+        grid: {
+          bottom: '20%'
+        },
+        yAxis: {
+          boundaryGap: false,
+          data: ['未掌握', '基本掌握', '熟练掌握', '精通掌握'],
+          axisLabel: {
+            textStyle: {
+              color: '#b71540'
+            }
+          }
+        },
+        legend: {
+          bottom: 10
+        },
+        tooltip: {
+          formatter(data) {
+            // console.log(data.marker)
+            let str = `<span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#b71540;"></span>`
+            return str + data.name + ': ' + data.value
+          }
+        },
+        series: [
+          {
+            type: 'bar',
+            data: ['精通掌握', '熟练掌握', '熟练掌握', '熟练掌握', '熟练掌握', '基本掌握', '基本掌握', '基本掌握', '基本掌握','精通掌握','精通掌握','精通掌握','精通掌握'],
+            itemStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(
+                  0, 1, 0, 0,
+                  [
+                    { offset: 0, color: '#4a69bd' },                   //柱图渐变色
+                    { offset: 0.5, color: '#1e3799' },                   //柱图渐变色
+                    { offset: 1, color: '#0c2461' }                    //柱图渐变色
+                  ]
+                )
+              },
+              emphasis: {
+                color: new echarts.graphic.LinearGradient(
+                  0, 1, 0, 0,
+                  [
+                    { offset: 0, color: '#6a89cc' },                  //柱图高亮渐变色
+                    { offset: 0.5, color: '#4a69bd' },                //柱图高亮渐变色
+                    { offset: 1, color: '#1e3799' }                   //柱图高亮渐变色
+                  ]
+                )
+              }
+            },
+          }
+        ]
+      }
+
+      myLeftChart.setOption(option)
     });
   </script>
 
@@ -150,7 +225,7 @@
     <!-- 专业技能 -->
     <div class="section skills">
       <h1>专业技能</h1>
-      <div class="skill-container">
+      <!-- <div class="skill-container">
         <div>
           <span style="background: #2980b9;">熟练掌握 HTML5</span>
           <span style="background: #2980b9;">熟练掌握 CSS3</span>
@@ -166,7 +241,9 @@
           <span style="background: #2980b9;">精通 Adobe Premiere</span>
           <span style="background: #2980b9;">精通 Adobe Illustrator</span>
         </div>
-      </div>
+      </div> -->
+      <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+      <div id="left" style="width: 750px;height:400px;margin: 100px auto;"></div>
     </div>
 
     <!-- 个人优势 -->
