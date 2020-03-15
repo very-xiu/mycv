@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const htmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 // 导入每次删除文件夹的插件
@@ -19,14 +19,16 @@ module.exports = {
     },
     mode: 'production', // 设置mode
     plugins: [ //插件
-        new htmlWebpackPlugin({
+        new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './src/index.html'),
             filename: 'index.html',
             minify: {
                 collapseWhitespace: true,
                 removeComments: true,
                 removeAttributeQuotes: true
-            }
+            },
+            inject: true,
+            favicon:'./src/favicon.ico'
         }),
         new CleanWebpackPlugin({ path: './docs' }), //要删除的文件
         // new webpack.optimize.UglifyJsPlugin({

@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const htmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: path.resolve(__dirname, './src/main.js'),
@@ -9,9 +9,11 @@ module.exports = {
         filename: 'bundle.js'
     },
     plugins: [ //插件
-        new htmlWebpackPlugin({
+        new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './src/index.html'),
-            filename: 'index.html'
+            filename: 'index.html',
+            inject: true,
+            favicon:'./src/favicon.ico'
         }),
         new webpack.ProvidePlugin({
             jQuery: 'jquery',
