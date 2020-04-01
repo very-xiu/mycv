@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 // 导入每次删除文件夹的插件
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -10,12 +9,10 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-    entry: { //配置入口节点
-        'bundle': path.resolve(__dirname, './src/main.js'),
-    },
+    entry: './src/main.js',  //配置入口节点
     output: {
+        filename: 'js/[name].js', // 将来再发布的时候，除了会有一个 bundle.js ，还会多一个 vendor~bundle.js 的文件，里面存放了所有的第三方包
         path: path.resolve(__dirname, './docs'),
-        filename: 'js/[name].js' // 将来再发布的时候，除了会有一个 bundle.js ，还会多一个 vendor~bundle.js 的文件，里面存放了所有的第三方包
     },
     mode: 'production', // 设置mode
     plugins: [ //插件
@@ -28,19 +25,16 @@ module.exports = {
                 removeAttributeQuotes: true
             },
             inject: true,
-            favicon:'./src/favicon.ico'
+            favicon: './src/favicon.ico'
         }),
         new CleanWebpackPlugin({ path: './docs' }), //要删除的文件
-        // new webpack.optimize.UglifyJsPlugin({
-        //     compress:{warnings:false}
-        // }),
         new ExtractTextPlugin("./css/styles.css"), //抽取css
         new webpack.ProvidePlugin({
             jQuery: 'jquery',
             $: 'jquery'
         })
     ],
-    optimization: {
+    /* optimization: {
         splitChunks: {
             cacheGroups: {
                 //第三方库抽离
@@ -65,7 +59,7 @@ module.exports = {
                 sourceMap: false
             })
         ]
-    },
+    }, */
     module: {
         rules: [ //所有第三方模块的匹配规则
             {
@@ -98,25 +92,21 @@ module.exports = {
                     loader: 'file-loader',
                     options: { name: './fonts/[name].[hash:8].[ext]' }
                 }]
-            }, //会打包到dist下的fonts文件夹下，必须使用hash
+            }, 
             {
-                test: /\.(png|gif|jpg|bmp|ico)$/,
-                use: [{
-                        loader: 'url-loader',
-                        options: { limit: 8192, name: 'images/[name].[ext]' }
-                    } //必须使用hash
-                ]
+                test: /\.(jpg|jpeg|gif|bmp|png|ico)$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 8 * 1024,
+                    esModule: false,
+                    name: 'images/[hash:10].[ext]'
+                }
+            },
+            {
+                test: /\.html$/,
+                loader: 'html-loader'
             },
             { test: /\.js?$/, use: 'babel-loader', exclude: /node_modules/ },
-            {
-                test: /\.pdf$/,
-                use: {
-                    loader: 'file-loader',
-                    options: {
-                        name: 'pdf/[name].[ext]'
-                    }
-                }
-            }
         ]
     }
 }
